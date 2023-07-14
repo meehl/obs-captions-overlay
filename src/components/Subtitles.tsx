@@ -39,9 +39,10 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   }
 
   return (
-    <div className='fixed bottom-0'>
-      <div style={style}>
-        {connectionStatus}: {lastMessage !== null ? String(lastMessage.data) : null}
+    <div className='fixed flex bottom-0 p-2 w-screen justify-center'>
+      <div className='rounded-xl text-center p-2 w-[50%]' style={style}>
+        {connectionStatus}: {lastMessage !== null ? String(lastMessage.data) : 'Sed maiores quos voluptas corrupti nobis fugit. Ratione tempore nisi cum accusamus. Explicabo debitis ea id est consequuntur soluta'}
+        
       </div>
     </div>
   )

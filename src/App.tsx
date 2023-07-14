@@ -18,7 +18,7 @@ const App: FC = () => {
   })
 
   return (
-    <div className="App h-full w-full">
+    <div className="App">
       <PropertyPanel data={properties} setData={setProperties} />
       <Subtitles {...properties} />
     </div>

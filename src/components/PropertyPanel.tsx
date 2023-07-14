@@ -14,7 +14,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
   }
 
   return (
-    <div className='fixed flex flex-col rounded-xl bg-zinc-900 p-8 space-y-1.5'>
+    <div className='fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-4 space-y-1.5'>
       <label>
         <span className='block'>Font Family</span>
         <input
@@ -32,7 +32,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           value={data.fontSize}
           type="range"
           min="6"
-          max="300"
+          max="100"
           onChange={(e) => {
             handleChange('fontSize', Number(e.target.value))
           }}
