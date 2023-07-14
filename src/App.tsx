@@ -1,5 +1,4 @@
 import { type FC } from 'react'
-import './App.css'
 import PropertyPanel from './components/PropertyPanel'
 import Subtitles from './components/Subtitles'
 import type { SubtitleProps } from './types'
@@ -19,7 +18,7 @@ const App: FC = () => {
   })
 
   return (
-    <div className="App">
+    <div className="App h-full w-full">
       <PropertyPanel data={properties} setData={setProperties} />
       <Subtitles {...properties} />
     </div>

@@ -39,8 +39,10 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   }
 
   return (
-    <div style={style}>
-      {connectionStatus}: {lastMessage !== null ? String(lastMessage.data) : null}
+    <div className='fixed bottom-0'>
+      <div style={style}>
+        {connectionStatus}: {lastMessage !== null ? String(lastMessage.data) : null}
+      </div>
     </div>
   )
 }

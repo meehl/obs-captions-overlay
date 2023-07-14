@@ -14,20 +14,21 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
   }
 
   return (
-    <div>
+    <div className='fixed flex flex-col rounded-xl bg-zinc-900 p-8 space-y-1.5'>
       <label>
-        Font Family:
+        <span className='block'>Font Family</span>
         <input
+          className='block rounded-sm p-1'
           value={data.fontFamily}
           onChange={(e) => {
             handleChange('fontFamily', Number(e.target.value))
           }}
         />
       </label>
-      <br />
       <label>
-        Font Size ({data.fontSize}px):
+        <span className='block'>Font Size ({data.fontSize}px)</span>
         <input
+          className='block'
           value={data.fontSize}
           type="range"
           min="6"
@@ -37,10 +38,10 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           }}
         />
       </label>
-      <br />
       <label>
-        Font Weight ({data.fontWeight}):
+        <span className='block'>Font Weight ({data.fontWeight})</span>
         <input
+          className='block'
           value={data.fontWeight}
           type="range"
           min="100"
@@ -51,10 +52,10 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           }}
         />
       </label>
-      <br />
       <label>
-        Line Height ({data.lineHeight}):
+        <span className='block'>Line Height ({data.lineHeight})</span>
         <input
+          className='block'
           value={data.lineHeight}
           type="range"
           min="0"
@@ -65,10 +66,10 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           }}
         />
       </label>
-      <br />
       <label>
-        Outline Size ({data.outlineSize}px):
+        <span className='block'>Font Outline Size ({data.outlineSize}px)</span>
         <input
+          className='block'
           value={data.outlineSize}
           type="range"
           min="0"
@@ -78,9 +79,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           }}
         />
       </label>
-      <br />
       <label>
-        Font Color:
+        <span className='block'>Font Color</span>
         <ColorPickerPopup color={data.fontColor}>
           <HexAlphaColorPicker
             color={data.fontColor}
@@ -90,9 +90,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           />
         </ColorPickerPopup>
       </label>
-      <br />
       <label>
-        Outline Color:
+        <span className='block'>Font Outline Color</span>
         <ColorPickerPopup color={data.outlineColor}>
           <HexAlphaColorPicker
             color={data.outlineColor}
@@ -102,9 +101,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           />
         </ColorPickerPopup>
       </label>
-      <br />
       <label>
-        Background Color:
+        <span className='block'>Background Color</span>
         <ColorPickerPopup color={data.backgroundColor}>
           <HexAlphaColorPicker
             color={data.backgroundColor}
@@ -114,10 +112,10 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           />
         </ColorPickerPopup>
       </label>
-      <br />
       <label>
-        Websocket Address:
+        <span className='block'>Websocket Address</span>
         <input
+          className='block rounded-sm p-1'
           value={data.wsAddress}
           onChange={(e) => {
             handleChange('wsAddress', e.target.value)
