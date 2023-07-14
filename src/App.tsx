@@ -1,34 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { type FC } from 'react'
 import './App.css'
+import PropertyPanel from './components/PropertyPanel'
+import Subtitles from './components/Subtitles'
+import type { SubtitleProps } from './types'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: FC = () => {
+  const [properties, setProperties] = useLocalStorage<SubtitleProps>('properties', {
+    fontFamily: 'Arial',
+    fontSize: 30,
+    fontWeight: 500,
+    lineHeight: 1.2,
+    outlineSize: 0,
+    fontColor: '#ffffffff',
+    outlineColor: '#000000ff',
+    backgroundColor: '#00000033',
+    wsAddress: 'localhost:12422',
+  })
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <PropertyPanel data={properties} setData={setProperties} />
+      <Subtitles {...properties} />
+    </div>
   )
 }
 
