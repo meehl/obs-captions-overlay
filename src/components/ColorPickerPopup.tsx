@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { type FC, type ReactNode, useRef, useState } from 'react'
 import useClickOutside from '../hooks/useClickOutside'
 
@@ -15,32 +16,20 @@ export const ColorPickerPopup: FC<ColorPickerPopupProps> = (props) => {
   })
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="relative">
       <div
+        role="button"
+        tabIndex={0}
+        className="rounded-lg h-7 w-7 border-2 border-black cursor-pointer"
         style={{
           backgroundColor: props.color,
-          width: 28,
-          height: 28,
-          borderRadius: 8,
-          cursor: 'pointer',
-          border: '3px solid #000',
         }}
         onClick={() => {
           setIsOpen(true)
         }}
       />
-
       {isOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            borderRadius: '9px',
-            top: '100%',
-            zIndex: 1,
-            left: 0,
-          }}
-          ref={pickerRef}
-        >
+        <div className="absolute top-[100%] left-0 rounded-lg z-10" ref={pickerRef}>
           {props.children}
         </div>
       )}

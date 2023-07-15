@@ -15,7 +15,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
 
   return (
     <div className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-4 space-y-1.5">
-      <label>
+      <div>
         <span className="block">Font Family</span>
         <select
           className="block rounded-sm p-1"
@@ -30,8 +30,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           <option value="Open Sans">Open Sans</option>
           <option value="Noto Sans">Noto Sans</option>
         </select>
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Font Size ({data.fontSize}px)</span>
         <input
           className="block"
@@ -43,8 +43,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('fontSize', Number(e.target.value))
           }}
         />
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Font Weight ({data.fontWeight})</span>
         <input
           className="block"
@@ -57,8 +57,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('fontWeight', Number(e.target.value))
           }}
         />
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Line Height ({data.lineHeight})</span>
         <input
           className="block"
@@ -71,8 +71,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('lineHeight', Number(e.target.value))
           }}
         />
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Font Outline Size ({data.outlineSize}px)</span>
         <input
           className="block"
@@ -84,9 +84,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('outlineSize', Number(e.target.value))
           }}
         />
-      </label>
-      <label>
-        <span className="block">Font Color</span>
+      </div>
+      <div className="flex flex-row justify-between">
+        <span>Font Color</span>
         <ColorPickerPopup color={data.fontColor}>
           <HexAlphaColorPicker
             color={data.fontColor}
@@ -95,9 +95,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             }}
           />
         </ColorPickerPopup>
-      </label>
-      <label>
-        <span className="block">Font Outline Color</span>
+      </div>
+      <div className="flex flex-row justify-between">
+        <span>Font Outline Color</span>
         <ColorPickerPopup color={data.outlineColor}>
           <HexAlphaColorPicker
             color={data.outlineColor}
@@ -106,9 +106,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             }}
           />
         </ColorPickerPopup>
-      </label>
-      <label>
-        <span className="block">Background Color</span>
+      </div>
+      <div className="flex flex-row justify-between">
+        <span>Background Color</span>
         <ColorPickerPopup color={data.backgroundColor}>
           <HexAlphaColorPicker
             color={data.backgroundColor}
@@ -117,8 +117,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             }}
           />
         </ColorPickerPopup>
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Message History Size ({data.historySize})</span>
         <input
           className="block"
@@ -130,18 +130,18 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('historySize', Number(e.target.value))
           }}
         />
-      </label>
-      <label>
+      </div>
+      <div>
         <span className="block">Websocket Address</span>
         <input
-          className="block rounded-sm p-1"
+          className="block rounded-sm p-1 w-48"
           value={data.wsAddress}
           onChange={(e) => {
             handleChange('wsAddress', e.target.value)
           }}
         />
-      </label>
-      <label>
+      </div>
+      <div>
         <span>Show Preview?</span>
         <input
           className="m-1"
@@ -151,7 +151,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('showPreview', e.target.checked)
           }}
         />
-      </label>
+      </div>
     </div>
   )
 }
