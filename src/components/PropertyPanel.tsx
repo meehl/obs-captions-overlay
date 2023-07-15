@@ -14,21 +14,27 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
   }
 
   return (
-    <div className='fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-4 space-y-1.5'>
+    <div className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-4 space-y-1.5">
       <label>
-        <span className='block'>Font Family</span>
-        <input
+        <span className="block">Font Family</span>
+        <select
           className='block rounded-sm p-1'
           value={data.fontFamily}
           onChange={(e) => {
-            handleChange('fontFamily', Number(e.target.value))
+            handleChange('fontFamily', e.target.value)
           }}
-        />
+        >
+          <option value="Roboto">Roboto</option>
+          <option value="Lato">Lato</option>
+          <option value="Poppins">Poppins</option>
+          <option value="Open Sans">Open Sans</option>
+          <option value="Noto Sans">Noto Sans</option>
+        </select>
       </label>
       <label>
-        <span className='block'>Font Size ({data.fontSize}px)</span>
+        <span className="block">Font Size ({data.fontSize}px)</span>
         <input
-          className='block'
+          className="block"
           value={data.fontSize}
           type="range"
           min="6"
@@ -39,9 +45,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         />
       </label>
       <label>
-        <span className='block'>Font Weight ({data.fontWeight})</span>
+        <span className="block">Font Weight ({data.fontWeight})</span>
         <input
-          className='block'
+          className="block"
           value={data.fontWeight}
           type="range"
           min="100"
@@ -53,9 +59,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         />
       </label>
       <label>
-        <span className='block'>Line Height ({data.lineHeight})</span>
+        <span className="block">Line Height ({data.lineHeight})</span>
         <input
-          className='block'
+          className="block"
           value={data.lineHeight}
           type="range"
           min="0"
@@ -67,9 +73,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         />
       </label>
       <label>
-        <span className='block'>Font Outline Size ({data.outlineSize}px)</span>
+        <span className="block">Font Outline Size ({data.outlineSize}px)</span>
         <input
-          className='block'
+          className="block"
           value={data.outlineSize}
           type="range"
           min="0"
@@ -80,7 +86,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         />
       </label>
       <label>
-        <span className='block'>Font Color</span>
+        <span className="block">Font Color</span>
         <ColorPickerPopup color={data.fontColor}>
           <HexAlphaColorPicker
             color={data.fontColor}
@@ -91,7 +97,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         </ColorPickerPopup>
       </label>
       <label>
-        <span className='block'>Font Outline Color</span>
+        <span className="block">Font Outline Color</span>
         <ColorPickerPopup color={data.outlineColor}>
           <HexAlphaColorPicker
             color={data.outlineColor}
@@ -102,7 +108,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         </ColorPickerPopup>
       </label>
       <label>
-        <span className='block'>Background Color</span>
+        <span className="block">Background Color</span>
         <ColorPickerPopup color={data.backgroundColor}>
           <HexAlphaColorPicker
             color={data.backgroundColor}
@@ -113,9 +119,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         </ColorPickerPopup>
       </label>
       <label>
-        <span className='block'>Websocket Address</span>
+        <span className="block">Websocket Address</span>
         <input
-          className='block rounded-sm p-1'
+          className="block rounded-sm p-1"
           value={data.wsAddress}
           onChange={(e) => {
             handleChange('wsAddress', e.target.value)
