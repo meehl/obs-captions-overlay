@@ -1,12 +1,12 @@
 import { type FC, useEffect, useState } from 'react'
-import useWebSocket, { ReadyState } from 'react-use-websocket'
+import useWebSocket from 'react-use-websocket'
 import { type SubtitleProps } from '../types'
 import { useDebounce } from '../hooks/useDebounce'
 
 const Subtitles: FC<SubtitleProps> = (props) => {
-  const [, setMessageHistory] = useState<MessageEvent[]>([])
+  const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([])
   const debouncedWsAddress = useDebounce<string>(props.wsAddress, 1000)
-  const { lastMessage, readyState } = useWebSocket(`ws://${debouncedWsAddress}`, {
+  const { lastMessage } = useWebSocket(`ws://${debouncedWsAddress}`, {
     retryOnError: true,
     shouldReconnect: (closeEvent) => true,
     reconnectAttempts: Infinity,
@@ -15,20 +15,12 @@ const Subtitles: FC<SubtitleProps> = (props) => {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage))
+      setMessageHistory((prev) => prev.concat(lastMessage).slice(-1 * props.historySize))
     }
-  }, [lastMessage])
-
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting',
-    [ReadyState.OPEN]: 'Open',
-    [ReadyState.CLOSING]: 'Closing',
-    [ReadyState.CLOSED]: 'Closed',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-  }[readyState]
+  }, [lastMessage, props.historySize])
 
   const style = {
-    fontFamily: props.fontFamily,
+    fontFamily: props.fontFamily + ', sans-serif',
     fontSize: props.fontSize,
     fontWeight: props.fontWeight,
     lineHeight: props.lineHeight,
@@ -38,12 +30,21 @@ const Subtitles: FC<SubtitleProps> = (props) => {
     backgroundColor: props.backgroundColor,
   }
 
+  const messageItems = messageHistory.map((msg) => (
+    <span className="block opacity-60 last:opacity-100" key={msg.lastEventId}>
+      {msg.data}
+    </span>
+  ))
+
+  const isHistoryEmpty = messageHistory.length === 0
+
   return (
-    <div className='fixed flex bottom-0 p-2 w-screen justify-center'>
-      <div className='rounded-xl text-center p-2 w-[50%]' style={style}>
-        {connectionStatus}: {lastMessage !== null ? String(lastMessage.data) : 'Sed maiores quos voluptas corrupti nobis fugit. Ratione tempore nisi cum accusamus. Explicabo debitis ea id est consequuntur soluta'}
-        
-      </div>
+    <div className="fixed flex bottom-0 w-screen justify-center">
+      {!isHistoryEmpty && (
+        <div className="rounded-xl text-center m-1 py-2 px-6" style={style}>
+          {messageItems}
+        </div>
+      )}
     </div>
   )
 }

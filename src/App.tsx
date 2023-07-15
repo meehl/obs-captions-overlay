@@ -6,8 +6,8 @@ import { useLocalStorage } from './hooks/useLocalStorage'
 
 const App: FC = () => {
   const [properties, setProperties] = useLocalStorage<SubtitleProps>('properties', {
-    fontFamily: 'Arial',
-    fontSize: 30,
+    fontFamily: 'Roboto',
+    fontSize: 16,
     fontWeight: 500,
     lineHeight: 1.2,
     outlineSize: 0,
@@ -15,6 +15,7 @@ const App: FC = () => {
     outlineColor: '#000000ff',
     backgroundColor: '#00000033',
     wsAddress: 'localhost:12422',
+    historySize: 2,
   })
 
   return (

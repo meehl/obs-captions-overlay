@@ -8,4 +8,5 @@ export type SubtitleProps = {
   outlineColor: string
   backgroundColor: string
   wsAddress: string
+  historySize: number
 }

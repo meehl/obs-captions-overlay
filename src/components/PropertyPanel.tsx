@@ -18,7 +18,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
       <label>
         <span className="block">Font Family</span>
         <select
-          className='block rounded-sm p-1'
+          className="block rounded-sm p-1"
           value={data.fontFamily}
           onChange={(e) => {
             handleChange('fontFamily', e.target.value)
@@ -117,6 +117,19 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             }}
           />
         </ColorPickerPopup>
+      </label>
+      <label>
+        <span className="block">Message History Size ({data.historySize})</span>
+        <input
+          className="block"
+          value={data.historySize}
+          type="range"
+          min="1"
+          max="8"
+          onChange={(e) => {
+            handleChange('historySize', Number(e.target.value))
+          }}
+        />
       </label>
       <label>
         <span className="block">Websocket Address</span>
