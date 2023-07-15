@@ -9,7 +9,7 @@ interface PropertyPanelProps {
 }
 
 const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
-  const handleChange = (key: string, value: string | number): void => {
+  const handleChange = (key: string, value: string | number | boolean): void => {
     setData((s: SubtitleProps) => ({ ...s, [key]: value }))
   }
 
@@ -138,6 +138,17 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           value={data.wsAddress}
           onChange={(e) => {
             handleChange('wsAddress', e.target.value)
+          }}
+        />
+      </label>
+      <label>
+        <span>Show Preview?</span>
+        <input
+          className="m-1"
+          type="checkbox"
+          checked={data.showPreview}
+          onChange={(e) => {
+            handleChange('showPreview', e.target.checked)
           }}
         />
       </label>

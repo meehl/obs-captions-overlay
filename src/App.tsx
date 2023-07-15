@@ -16,6 +16,7 @@ const App: FC = () => {
     backgroundColor: '#00000033',
     wsAddress: 'localhost:12422',
     historySize: 2,
+    showPreview: false
   })
 
   return (

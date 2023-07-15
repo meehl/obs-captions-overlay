@@ -3,6 +3,22 @@ import useWebSocket from 'react-use-websocket'
 import { type SubtitleProps } from '../types'
 import { useDebounce } from '../hooks/useDebounce'
 
+const previewMessages = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'Ut tellus elementum sagittis vitae et.',
+  'Nunc id cursus metus aliquam eleifend mi in nulla posuere.',
+  'Condimentum vitae sapien pellentesque habitant morbi. Proin sagittis nisl rhoncus mattis rhoncus.',
+  'Facilisi nullam vehicula ipsum a arcu cursus vitae.',
+  'Et egestas quis ipsum suspendisse ultrices gravida dictum fusce ut.',
+  'Integer malesuada nunc vel risus commodo viverra.',
+  'In hendrerit gravida rutrum quisque non tellus orci ac auctor.',
+  'Dictum at tempor commodo ullamcorper a.',
+]
+
+const getMultipleRandom = <T,>(arr: T[], num: number) => {
+  return [...arr].sort(() => 0.5 - Math.random()).slice(0, num)
+}
+
 const Subtitles: FC<SubtitleProps> = (props) => {
   const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([])
   const debouncedWsAddress = useDebounce<string>(props.wsAddress, 1000)
@@ -18,6 +34,18 @@ const Subtitles: FC<SubtitleProps> = (props) => {
       setMessageHistory((prev) => prev.concat(lastMessage).slice(-1 * props.historySize))
     }
   }, [lastMessage, props.historySize])
+
+  useEffect(() => {
+    if (props.showPreview) {
+      setMessageHistory(
+        getMultipleRandom(previewMessages, props.historySize).map(
+          (msg) => new MessageEvent('message', { data: msg }),
+        )
+      )
+    } else {
+      setMessageHistory([])
+    }
+  }, [props.showPreview, props.historySize])
 
   const style = {
     fontFamily: props.fontFamily + ', sans-serif',
