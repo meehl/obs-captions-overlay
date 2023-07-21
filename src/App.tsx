@@ -15,6 +15,7 @@ const App: FC = () => {
     outlineColor: '#000000ff',
     backgroundColor: '#00000033',
     maxWidth: 50,
+    textAlign: 'center',
     wsAddress: 'localhost:12422',
     historySize: 1,
     showPreview: false

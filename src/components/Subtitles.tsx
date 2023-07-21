@@ -57,6 +57,7 @@ const Subtitles: FC<SubtitleProps> = (props) => {
     color: props.fontColor,
     backgroundColor: props.backgroundColor,
     maxWidth: String(props.maxWidth) + '%',
+    textAlign: props.textAlign as CanvasTextAlign
   }
 
   const messageItems = messageHistory.map((msg) => (
@@ -70,7 +71,7 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   return (
     <div className="fixed flex bottom-0 w-screen justify-center">
       {!isHistoryEmpty && (
-        <div className={`rounded-xl text-center m-1 py-2 px-6`} style={style}>
+        <div className={`rounded-xl m-1 py-2 px-6`} style={style}>
           {messageItems}
         </div>
       )}

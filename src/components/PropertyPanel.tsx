@@ -14,7 +14,7 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
   }
 
   return (
-    <div className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-4 space-y-1.5">
+    <div className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-1 space-y-1.5">
       <div>
         <span className="block">Font Family</span>
         <select
@@ -130,6 +130,20 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('maxWidth', Number(e.target.value))
           }}
         />
+      </div>
+      <div className="flex flex-row justify-between">
+        <span>Text Align</span>
+        <select
+          className="rounded-sm p-1 w-28"
+          value={data.textAlign}
+          onChange={(e) => {
+            handleChange('textAlign', e.target.value)
+          }}
+        >
+          <option value="Left">Left</option>
+          <option value="Center">Center</option>
+          <option value="Right">Right</option>
+        </select>
       </div>
       <div>
         <span className="block">Message History Size ({data.historySize})</span>
