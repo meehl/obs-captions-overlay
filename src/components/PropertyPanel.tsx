@@ -124,8 +124,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           className="block"
           value={data.historySize}
           type="range"
-          min="1"
-          max="8"
+          min="0"
+          max="7"
           onChange={(e) => {
             handleChange('historySize', Number(e.target.value))
           }}

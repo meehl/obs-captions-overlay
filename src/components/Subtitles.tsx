@@ -31,14 +31,14 @@ const Subtitles: FC<SubtitleProps> = (props) => {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage).slice(-1 * props.historySize))
+      setMessageHistory((prev) => prev.concat(lastMessage).slice(-1 * (props.historySize + 1)))
     }
   }, [lastMessage, props.historySize])
 
   useEffect(() => {
     if (props.showPreview) {
       setMessageHistory(
-        getMultipleRandom(previewMessages, props.historySize).map(
+        getMultipleRandom(previewMessages, (props.historySize + 1)).map(
           (msg) => new MessageEvent('message', { data: msg }),
         ),
       )

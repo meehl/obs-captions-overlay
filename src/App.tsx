@@ -15,7 +15,7 @@ const App: FC = () => {
     outlineColor: '#000000ff',
     backgroundColor: '#00000033',
     wsAddress: 'localhost:12422',
-    historySize: 2,
+    historySize: 1,
     showPreview: false
   })
 
