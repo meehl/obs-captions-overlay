@@ -7,6 +7,7 @@ export type SubtitleProps = {
   fontColor: string
   outlineColor: string
   backgroundColor: string
+  maxWidth: number,
   wsAddress: string
   historySize: number
   showPreview: boolean

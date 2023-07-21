@@ -14,6 +14,7 @@ const App: FC = () => {
     fontColor: '#ffffffff',
     outlineColor: '#000000ff',
     backgroundColor: '#00000033',
+    maxWidth: 50,
     wsAddress: 'localhost:12422',
     historySize: 1,
     showPreview: false

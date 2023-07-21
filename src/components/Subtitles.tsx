@@ -56,6 +56,7 @@ const Subtitles: FC<SubtitleProps> = (props) => {
     WebkitTextStrokeColor: props.outlineColor,
     color: props.fontColor,
     backgroundColor: props.backgroundColor,
+    maxWidth: String(props.maxWidth) + '%',
   }
 
   const messageItems = messageHistory.map((msg) => (
@@ -69,7 +70,7 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   return (
     <div className="fixed flex bottom-0 w-screen justify-center">
       {!isHistoryEmpty && (
-        <div className="rounded-xl text-center max-w-[50%] m-1 py-2 px-6" style={style}>
+        <div className={`rounded-xl text-center m-1 py-2 px-6`} style={style}>
           {messageItems}
         </div>
       )}

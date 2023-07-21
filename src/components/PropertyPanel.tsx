@@ -119,6 +119,19 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
         </ColorPickerPopup>
       </div>
       <div>
+        <span className="block">Max Width ({data.maxWidth}%)</span>
+        <input
+          className="block"
+          value={data.maxWidth}
+          type="range"
+          min="10"
+          max="100"
+          onChange={(e) => {
+            handleChange('maxWidth', Number(e.target.value))
+          }}
+        />
+      </div>
+      <div>
         <span className="block">Message History Size ({data.historySize})</span>
         <input
           className="block"
