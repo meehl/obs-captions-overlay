@@ -1,18 +1,18 @@
 import { type FC, useEffect, useState } from 'react'
 import useWebSocket from 'react-use-websocket'
-import { type SubtitleProps } from '../types'
+import { type Transcription, type SubtitleProps } from '../types'
 import { useDebounce } from '../hooks/useDebounce'
 
 const previewMessages = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'Ut tellus elementum sagittis vitae et.',
-  'Nunc id cursus metus aliquam eleifend mi in nulla posuere.',
-  'Condimentum vitae sapien pellentesque habitant morbi. Proin sagittis nisl rhoncus mattis rhoncus.',
-  'Facilisi nullam vehicula ipsum a arcu cursus vitae.',
-  'Et egestas quis ipsum suspendisse ultrices gravida dictum fusce ut.',
-  'Integer malesuada nunc vel risus commodo viverra.',
-  'In hendrerit gravida rutrum quisque non tellus orci ac auctor.',
-  'Dictum at tempor commodo ullamcorper a.',
+  {id: 1, text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+  {id: 2, text: 'Ut tellus elementum sagittis vitae et.'},
+  {id: 3, text: 'Nunc id cursus metus aliquam eleifend mi in nulla posuere.'},
+  {id: 4, text: 'Condimentum vitae sapien pellentesque habitant morbi. Proin sagittis nisl rhoncus mattis rhoncus.'},
+  {id: 5, text: 'Facilisi nullam vehicula ipsum a arcu cursus vitae.'},
+  {id: 6, text: 'Et egestas quis ipsum suspendisse ultrices gravida dictum fusce ut.'},
+  {id: 7, text: 'Integer malesuada nunc vel risus commodo viverra.'},
+  {id: 8, text: 'In hendrerit gravida rutrum quisque non tellus orci ac auctor.'},
+  {id: 9, text: 'Dictum at tempor commodo ullamcorper a.'},
 ]
 
 const getMultipleRandom = <T,>(arr: T[], num: number) => {
@@ -20,9 +20,9 @@ const getMultipleRandom = <T,>(arr: T[], num: number) => {
 }
 
 const Subtitles: FC<SubtitleProps> = (props) => {
-  const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([])
+  const [messageHistory, setMessageHistory] = useState<Transcription[]>([])
   const debouncedWsAddress = useDebounce<string>(props.wsAddress, 1000)
-  const { lastMessage } = useWebSocket(`ws://${debouncedWsAddress}`, {
+  const { lastJsonMessage } = useWebSocket(`ws://${debouncedWsAddress}`, {
     retryOnError: true,
     shouldReconnect: (closeEvent) => true,
     reconnectAttempts: Infinity,
@@ -30,17 +30,16 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   })
 
   useEffect(() => {
-    if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage).slice(-1 * (props.historySize + 1)))
+    if (lastJsonMessage !== null) {
+      // append new message at end and remove oldest message from front
+      setMessageHistory((prev) => prev.concat(lastJsonMessage as Transcription).slice(-1 * (props.historySize + 1)))
     }
-  }, [lastMessage, props.historySize])
+  }, [lastJsonMessage, props.historySize])
 
   useEffect(() => {
     if (props.showPreview) {
       setMessageHistory(
-        getMultipleRandom(previewMessages, (props.historySize + 1)).map(
-          (msg) => new MessageEvent('message', { data: msg }),
-        ),
+        getMultipleRandom(previewMessages, (props.historySize + 1))
       )
     } else {
       setMessageHistory([])
@@ -61,8 +60,8 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   }
 
   const messageItems = messageHistory.map((msg) => (
-    <span className="block opacity-60 last:opacity-100" key={msg.lastEventId}>
-      {msg.data}
+    <span className="block opacity-60 last:opacity-100" key={msg.id}>
+      {msg.text}
     </span>
   ))
 

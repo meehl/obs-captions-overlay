@@ -13,3 +13,8 @@ export type SubtitleProps = {
   historySize: number
   showPreview: boolean
 }
+
+export type Transcription = {
+  id: number,
+  text: string
+}
