@@ -25,10 +25,8 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
           }}
         >
           <option value="Roboto">Roboto</option>
-          <option value="Lato">Lato</option>
           <option value="Poppins">Poppins</option>
           <option value="Open Sans">Open Sans</option>
-          <option value="Noto Sans">Noto Sans</option>
         </select>
       </div>
       <div>
