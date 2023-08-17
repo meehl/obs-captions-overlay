@@ -24,7 +24,7 @@ const Subtitles: FC<SubtitleProps> = (props) => {
   const debouncedWsAddress = useDebounce<string>(props.wsAddress, 1000)
   const { lastJsonMessage } = useWebSocket(`ws://${debouncedWsAddress}`, {
     retryOnError: true,
-    shouldReconnect: (closeEvent) => true,
+    shouldReconnect: () => true,
     reconnectAttempts: Infinity,
     reconnectInterval: 10000,
   })
