@@ -16,5 +16,6 @@ export type SubtitleProps = {
 
 export type Transcription = {
   id: number,
-  text: string
+  text: string,
+  key: number
 }
