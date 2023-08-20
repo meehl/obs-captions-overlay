@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import useWebSocket, {ReadyState} from 'react-use-websocket'
+import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useDebounce } from '../hooks/useDebounce'
 import { type Transcription } from '../types'
-import {CONNECTION_STATUS} from '../constants'
+import { CONNECTION_STATUS } from '../constants'
 
 type useWhisperWebsocketProps = {
   wsAddress: string

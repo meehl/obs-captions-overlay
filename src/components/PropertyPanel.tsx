@@ -2,7 +2,7 @@ import { type FC, type Dispatch, type SetStateAction } from 'react'
 import { HexAlphaColorPicker } from 'react-colorful'
 import { type Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
-import { CONNECTION_STATUS } from '../constants'
+import { CONNECTION_STATUS, defaultSettings } from '../constants'
 
 type PropertyPanelProps = {
   data: Settings
@@ -13,6 +13,10 @@ type PropertyPanelProps = {
 const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus }) => {
   const handleChange = (key: string, value: string | number | boolean): void => {
     setData((s: Settings) => ({ ...s, [key]: value }))
+  }
+
+  const handleReset = (): void => {
+    setData(defaultSettings)
   }
 
   let status = ''
@@ -199,6 +203,12 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
             handleChange('showPreview', e.target.checked)
           }}
         />
+      </div>
+      <div>
+        <button
+          className="mt-1 px-2 rounded bg-blue-500"
+          onClick={() => handleReset()}
+        >Reset To Defaults</button>
       </div>
     </div>
   )
