@@ -1,11 +1,13 @@
 import { type FC } from 'react'
 import PropertyPanel from './components/PropertyPanel'
 import Subtitles from './components/Subtitles'
-import type { SubtitleProps } from './types'
+import type { Settings } from './types'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import useWhisperWebsocket from './hooks/useWhisperWebsocket'
+import {previewMessages} from './constants'
 
 const App: FC = () => {
-  const [properties, setProperties] = useLocalStorage<SubtitleProps>('properties', {
+  const [settings, setSettings] = useLocalStorage<Settings>('properties', {
     fontFamily: 'Roboto',
     fontSize: 16,
     fontWeight: 500,
@@ -18,13 +20,22 @@ const App: FC = () => {
     textAlign: 'center',
     wsAddress: 'localhost:12422',
     historySize: 1,
-    showPreview: false
+    showPreview: false,
   })
+
+  const { messageHistory } = useWhisperWebsocket({
+    wsAddress: settings.wsAddress,
+    historySize: settings.historySize,
+  })
+
+  const messages = settings.showPreview
+    ? previewMessages.slice(0, settings.historySize)
+    : messageHistory
 
   return (
     <div className="App">
-      <PropertyPanel data={properties} setData={setProperties} />
-      <Subtitles {...properties} />
+      <PropertyPanel data={settings} setData={setSettings} />
+      <Subtitles settings={settings} messages={messages} />
     </div>
   )
 }

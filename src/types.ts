@@ -1,4 +1,4 @@
-export type SubtitleProps = {
+export type Settings = {
   fontFamily: string
   fontSize: number
   fontWeight: number

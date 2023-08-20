@@ -1,16 +1,16 @@
 import { type FC, type Dispatch, type SetStateAction } from 'react'
 import { HexAlphaColorPicker } from 'react-colorful'
-import { type SubtitleProps } from '../types'
+import { type Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
 
-interface PropertyPanelProps {
-  data: SubtitleProps
-  setData: Dispatch<SetStateAction<SubtitleProps>>
+type PropertyPanelProps = {
+  data: Settings
+  setData: Dispatch<SetStateAction<Settings>>
 }
 
 const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
   const handleChange = (key: string, value: string | number | boolean): void => {
-    setData((s: SubtitleProps) => ({ ...s, [key]: value }))
+    setData((s: Settings) => ({ ...s, [key]: value }))
   }
 
   return (
