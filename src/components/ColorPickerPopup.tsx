@@ -29,7 +29,7 @@ export const ColorPickerPopup: FC<ColorPickerPopupProps> = (props) => {
         }}
       />
       {isOpen && (
-        <div className="absolute top-[100%] left-0 rounded-lg z-10" ref={pickerRef}>
+        <div className="absolute top-[100%] left-0 rounded-lg z-20" ref={pickerRef}>
           {props.children}
         </div>
       )}

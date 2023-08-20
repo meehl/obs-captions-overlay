@@ -3,6 +3,7 @@ import { HexAlphaColorPicker } from 'react-colorful'
 import { type Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
 import { CONNECTION_STATUS, defaultSettings } from '../constants'
+import useHideOnMouseStop from '../hooks/useHideOnMouseStop'
 
 type PropertyPanelProps = {
   data: Settings
@@ -11,6 +12,8 @@ type PropertyPanelProps = {
 }
 
 const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus }) => {
+  const [hide] = useHideOnMouseStop({ delay: 6000 })
+
   const handleChange = (key: string, value: string | number | boolean): void => {
     setData((s: Settings) => ({ ...s, [key]: value }))
   }
@@ -38,7 +41,10 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
   }
 
   return (
-    <div className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-1 space-y-1.5">
+    <div
+      className="fixed flex flex-col rounded-xl bg-zinc-900 p-4 m-1 space-y-1.5 z-10"
+      style={{ display: hide ? 'none' : 'flex' }}
+    >
       <div>
         <span className="block">Font Family</span>
         <select
@@ -205,10 +211,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
         />
       </div>
       <div>
-        <button
-          className="mt-1 px-2 rounded bg-blue-500"
-          onClick={() => handleReset()}
-        >Reset To Defaults</button>
+        <button className="mt-1 px-2 rounded bg-blue-500" onClick={() => handleReset()}>
+          Reset To Defaults
+        </button>
       </div>
     </div>
   )
