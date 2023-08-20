@@ -31,3 +31,12 @@ export const previewMessages = [
     text: 'There is a frog in Indonesia that has no lungs – it breathes entirely through its skin.',
   },
 ]
+
+export enum CONNECTION_STATUS {
+  UNKNOWN = 'UNKNOWN',
+  CONNECTING = 'CONNECTING',
+  CONNECTED = 'CONNECTED',
+  NOT_AUTHENTICATED = 'NOT_AUTHENTICATED',
+  DISCONNECTED = 'DISCONNECTED',
+  ERROR = 'ERROR',
+}

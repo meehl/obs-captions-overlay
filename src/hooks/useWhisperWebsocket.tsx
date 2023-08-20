@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import useWebSocket from 'react-use-websocket'
+import useWebSocket, {ReadyState} from 'react-use-websocket'
 import { useDebounce } from '../hooks/useDebounce'
 import { type Transcription } from '../types'
+import {CONNECTION_STATUS} from '../constants'
 
 type useWhisperWebsocketProps = {
   wsAddress: string
@@ -13,7 +14,7 @@ let nextKey = 0
 const useWhisperWebsocket = ({ wsAddress, historySize }: useWhisperWebsocketProps) => {
   const [messageHistory, setMessageHistory] = useState<Transcription[]>([])
   const debouncedWsAddress = useDebounce<string>(wsAddress, 1000)
-  const { lastJsonMessage } = useWebSocket(`ws://${debouncedWsAddress}`, {
+  const { lastJsonMessage, readyState } = useWebSocket(`ws://${debouncedWsAddress}`, {
     retryOnError: true,
     shouldReconnect: () => true,
     reconnectAttempts: Infinity,
@@ -43,7 +44,15 @@ const useWhisperWebsocket = ({ wsAddress, historySize }: useWhisperWebsocketProp
     }
   }, [lastJsonMessage, historySize])
 
-  return { messageHistory }
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: CONNECTION_STATUS.CONNECTING,
+    [ReadyState.OPEN]: CONNECTION_STATUS.CONNECTED,
+    [ReadyState.CLOSING]: CONNECTION_STATUS.DISCONNECTED,
+    [ReadyState.CLOSED]: CONNECTION_STATUS.ERROR,
+    [ReadyState.UNINSTANTIATED]: CONNECTION_STATUS.ERROR,
+  }[readyState]
+
+  return { messageHistory, connectionStatus }
 }
 
 export default useWhisperWebsocket

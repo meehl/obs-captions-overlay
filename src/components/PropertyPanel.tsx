@@ -2,15 +2,35 @@ import { type FC, type Dispatch, type SetStateAction } from 'react'
 import { HexAlphaColorPicker } from 'react-colorful'
 import { type Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
+import { CONNECTION_STATUS } from '../constants'
 
 type PropertyPanelProps = {
   data: Settings
   setData: Dispatch<SetStateAction<Settings>>
+  connectionStatus: CONNECTION_STATUS
 }
 
-const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
+const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus }) => {
   const handleChange = (key: string, value: string | number | boolean): void => {
     setData((s: Settings) => ({ ...s, [key]: value }))
+  }
+
+  let status = ''
+  switch (connectionStatus) {
+    case CONNECTION_STATUS.CONNECTED:
+      status = '🟢'
+      break
+    case CONNECTION_STATUS.CONNECTING:
+      status = '🟠'
+      break
+    case CONNECTION_STATUS.NOT_AUTHENTICATED:
+    case CONNECTION_STATUS.ERROR:
+      status = '🔴'
+      break
+    case CONNECTION_STATUS.DISCONNECTED:
+    case CONNECTION_STATUS.UNKNOWN:
+      status = '⚫'
+      break
   }
 
   return (
@@ -165,6 +185,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData }) => {
             handleChange('wsAddress', e.target.value)
           }}
         />
+      </div>
+      <div>
+        <span className="block">WS Connection Status: {status}</span>
       </div>
       <div>
         <span>Show Preview?</span>

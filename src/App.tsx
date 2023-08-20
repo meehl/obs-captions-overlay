@@ -4,7 +4,7 @@ import Subtitles from './components/Subtitles'
 import type { Settings } from './types'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import useWhisperWebsocket from './hooks/useWhisperWebsocket'
-import {previewMessages} from './constants'
+import { previewMessages } from './constants'
 
 const App: FC = () => {
   const [settings, setSettings] = useLocalStorage<Settings>('properties', {
@@ -23,7 +23,7 @@ const App: FC = () => {
     showPreview: false,
   })
 
-  const { messageHistory } = useWhisperWebsocket({
+  const { messageHistory, connectionStatus } = useWhisperWebsocket({
     wsAddress: settings.wsAddress,
     historySize: settings.historySize,
   })
@@ -34,7 +34,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <PropertyPanel data={settings} setData={setSettings} />
+      <PropertyPanel data={settings} setData={setSettings} connectionStatus={connectionStatus} />
       <Subtitles settings={settings} messages={messages} />
     </div>
   )
