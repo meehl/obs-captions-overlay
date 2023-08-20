@@ -15,7 +15,7 @@ const App: FC = () => {
   })
 
   const messages = settings.showPreview
-    ? previewMessages.slice(0, settings.historySize)
+    ? previewMessages.slice(0, settings.historySize + 1)
     : messageHistory
 
   return (

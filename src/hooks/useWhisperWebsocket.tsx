@@ -35,7 +35,7 @@ const useWhisperWebsocket = ({ wsAddress, historySize }: useWhisperWebsocketProp
         } else {
           // append new message at end and remove oldest message from front
           newHistory.push(lastMsg)
-          while (newHistory.length > historySize) {
+          while (newHistory.length > historySize + 1) {
             newHistory.shift()
           }
           return newHistory

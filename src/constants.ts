@@ -48,6 +48,11 @@ export const previewMessages = [
     key: 7,
     text: 'There is a frog in Indonesia that has no lungs – it breathes entirely through its skin.',
   },
+  {
+    id: 8,
+    key: 8,
+    text: 'The waxy monkey frog secretes a wax from its neck and uses its legs to rub that wax all over its body. The wax prevents the skin of the frog from drying out in sunlight.',
+  },
 ]
 
 export enum CONNECTION_STATUS {
