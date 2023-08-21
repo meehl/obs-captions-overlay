@@ -12,7 +12,7 @@ type PropertyPanelProps = {
 }
 
 const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus }) => {
-  const [hide] = useHideOnMouseStop({ delay: 6000 })
+  const [hide] = useHideOnMouseStop({ delay: 6000, initialHide: true })
 
   const handleChange = (key: string, value: string | number | boolean): void => {
     setData((s: Settings) => ({ ...s, [key]: value }))
