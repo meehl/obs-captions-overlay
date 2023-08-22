@@ -7,7 +7,7 @@ type UseHideOnMouseStopProps = {
 
 let timerId: ReturnType<typeof setTimeout>
 
-const useHideOnMouseStop = ({ delay = 2000, initialHide = false }: UseHideOnMouseStopProps) => {
+const useHideOnMouseStop = ({ delay = 10000, initialHide = false }: UseHideOnMouseStopProps) => {
   const [hide, setHide] = useState(initialHide)
 
   const onMouseMove = useCallback(() => {
