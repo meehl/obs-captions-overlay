@@ -55,13 +55,18 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
     y: 875,
   })
   const [size, setSize] = useLocalStorage<Size>('size', {
-    width: 800,
+    width: '50%',
     height: 200,
   })
 
   const messageItems = messages.map((msg) => (
     <Message text={msg.text} key={msg.key} settings={settings} />
   ))
+
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: position.y <= (window.innerHeight / 2) ? 'start' : 'end'
+  }
 
   return (
     <Rnd
@@ -74,8 +79,8 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
         setSize({ width: ref.style.width, height: ref.style.height })
       }}
       bounds={'window'}
-      className="flex-col justify-end hover:border-2 border-red-600"
-      style={{ display: 'flex' }}
+      className="flex-col hover:border-2 border-red-600"
+      style={containerStyle}
     >
       {messageItems}
     </Rnd>
