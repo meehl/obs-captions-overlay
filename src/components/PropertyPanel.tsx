@@ -146,19 +146,6 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
           />
         </ColorPickerPopup>
       </div>
-      <div>
-        <span className="block">Max Width ({data.maxWidth}%)</span>
-        <input
-          className="block"
-          value={data.maxWidth}
-          type="range"
-          min="10"
-          max="100"
-          onChange={(e) => {
-            handleChange('maxWidth', Number(e.target.value))
-          }}
-        />
-      </div>
       <div className="flex flex-row justify-between">
         <span>Text Align</span>
         <select
@@ -168,9 +155,9 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
             handleChange('textAlign', e.target.value)
           }}
         >
-          <option value="Left">Left</option>
-          <option value="Center">Center</option>
-          <option value="Right">Right</option>
+          <option value="start">Left</option>
+          <option value="center">Center</option>
+          <option value="end">Right</option>
         </select>
       </div>
       <div>

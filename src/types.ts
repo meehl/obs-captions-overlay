@@ -7,7 +7,6 @@ export type Settings = {
   fontColor: string
   outlineColor: string
   backgroundColor: string
-  maxWidth: number
   textAlign: string
   wsAddress: string
   historySize: number
@@ -15,7 +14,7 @@ export type Settings = {
 }
 
 export type Transcription = {
-  id: number,
-  text: string,
+  id: number
+  text: string
   key: number
 }

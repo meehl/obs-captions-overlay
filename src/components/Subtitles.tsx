@@ -1,27 +1,17 @@
 import { type FC } from 'react'
 import { type Transcription, type Settings } from '../types'
 import useHideOnTimeout from '../hooks/useHideOnTimeout'
-
-type SubtitlesProps = {
-  settings: Settings
-  messages: Transcription[]
-}
+import { Rnd, type Position } from 'react-rnd'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type MessageProps = {
   text: string
+  settings: Settings
 }
 
-const Message: FC<MessageProps> = ({ text }) => {
-  const [ hide ] = useHideOnTimeout({ delay: 10000 })
+const Message: FC<MessageProps> = ({ text, settings }) => {
+  const [hide] = useHideOnTimeout({ delay: 120000 })
 
-  if (!hide) {
-    return <span className="block opacity-60 last:opacity-100 before:content-['»_']">{text}</span>
-  } else {
-    return null
-  }
-}
-
-const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
   const style = {
     fontFamily: settings.fontFamily + ', sans-serif',
     fontSize: settings.fontSize,
@@ -31,22 +21,64 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
     WebkitTextStrokeColor: settings.outlineColor,
     color: settings.fontColor,
     backgroundColor: settings.backgroundColor,
-    maxWidth: String(settings.maxWidth) + '%',
-    textAlign: settings.textAlign as CanvasTextAlign,
+  } as const
+
+  if (!hide) {
+    return (
+      <span
+        className="flex opacity-60 last-of-type:opacity-100"
+        style={{ justifyContent: settings.textAlign }}
+      >
+        <span className="rounded-xl py-1 px-4 before:content-['»_']" style={style}>
+          {text}
+        </span>
+      </span>
+    )
+  } else {
+    return null
   }
+}
 
-  const messageItems = messages.map((msg) => <Message text={msg.text} key={msg.key} />)
+type Size = {
+  width: string | number
+  height: string | number
+}
 
-  const isHistoryEmpty = messages.length === 0
+type SubtitlesProps = {
+  settings: Settings
+  messages: Transcription[]
+}
+
+const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
+  const [position, setPosition] = useLocalStorage<Position>('position', {
+    x: 560,
+    y: 875,
+  })
+  const [size, setSize] = useLocalStorage<Size>('size', {
+    width: 800,
+    height: 200,
+  })
+
+  const messageItems = messages.map((msg) => (
+    <Message text={msg.text} key={msg.key} settings={settings} />
+  ))
 
   return (
-    <div className="fixed flex bottom-0 w-screen justify-center">
-      {!isHistoryEmpty && (
-        <div className={`rounded-xl m-1 py-2 px-6 empty:hidden`} style={style}>
-          {messageItems}
-        </div>
-      )}
-    </div>
+    <Rnd
+      position={position}
+      size={size}
+      onDragStop={(_, d) => {
+        setPosition({ x: d.x, y: d.y })
+      }}
+      onResizeStop={(_e, _direction, ref) => {
+        setSize({ width: ref.style.width, height: ref.style.height })
+      }}
+      bounds={'window'}
+      className="flex-col justify-end hover:border-2 border-red-600"
+      style={{ display: 'flex' }}
+    >
+      {messageItems}
+    </Rnd>
   )
 }
 

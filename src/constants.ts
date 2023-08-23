@@ -1,15 +1,14 @@
-import {Settings} from "./types"
+import { Settings } from './types'
 
 export const defaultSettings: Settings = {
   fontFamily: 'Roboto',
-  fontSize: 16,
+  fontSize: 18,
   fontWeight: 500,
   lineHeight: 1.2,
   outlineSize: 0,
   fontColor: '#ffffffff',
   outlineColor: '#000000ff',
   backgroundColor: '#00000033',
-  maxWidth: 50,
   textAlign: 'center',
   wsAddress: 'localhost:12422',
   historySize: 1,
