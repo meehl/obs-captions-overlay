@@ -10,7 +10,7 @@ type MessageProps = {
 }
 
 const Message: FC<MessageProps> = ({ text, settings }) => {
-  const [hide] = useHideOnTimeout({ delay: 120000 })
+  const [hide] = useHideOnTimeout({ delay: 10000 })
 
   const style = {
     fontFamily: settings.fontFamily + ', sans-serif',
