@@ -18,3 +18,5 @@ export type Transcription = {
   text: string
   key: number
 }
+
+export type TimeoutType = ReturnType<typeof setTimeout>

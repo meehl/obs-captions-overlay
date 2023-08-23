@@ -1,23 +1,23 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { TimeoutType } from '../types'
 
 type UseHideOnMouseStopProps = {
   delay?: number
   initialHide?: boolean
 }
 
-let timerId: ReturnType<typeof setTimeout>
-
 const useHideOnMouseStop = ({ delay = 10000, initialHide = false }: UseHideOnMouseStopProps) => {
   const [hide, setHide] = useState(initialHide)
+  const timeoutRef = useRef<TimeoutType | null>(null)
 
   const onMouseMove = useCallback(() => {
-    clearTimeout(timerId)
+    clearTimeout(timeoutRef.current as TimeoutType)
 
     if (hide) {
       setHide(false)
     }
 
-    timerId = setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setHide(true)
     }, delay)
   }, [hide, delay])
