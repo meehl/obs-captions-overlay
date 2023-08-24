@@ -26,7 +26,7 @@ const Message: FC<MessageProps> = ({ text, settings }) => {
   if (!hide) {
     return (
       <span
-        className="flex opacity-60 last-of-type:opacity-100"
+        className="flex opacity-70 last-of-type:opacity-100"
         style={{ justifyContent: settings.textAlign }}
       >
         <span className="rounded-xl py-1 px-4 before:content-['»_']" style={style}>
