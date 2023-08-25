@@ -16,7 +16,6 @@ export type Settings = {
 export type Transcription = {
   id: number
   text: string
-  key: number
 }
 
 export type TimeoutType = ReturnType<typeof setTimeout>

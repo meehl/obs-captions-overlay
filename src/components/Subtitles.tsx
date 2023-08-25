@@ -60,7 +60,7 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
   })
 
   const messageItems = messages.map((msg) => (
-    <Message text={msg.text} key={msg.key} settings={settings} />
+    <Message text={msg.text} key={msg.id} settings={settings} />
   ))
 
   const containerStyle = {
