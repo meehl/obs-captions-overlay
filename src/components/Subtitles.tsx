@@ -27,7 +27,10 @@ const Message: FC<MessageProps> = ({ text, settings }) => {
     return (
       <span
         className="flex opacity-70 last-of-type:opacity-100"
-        style={{ justifyContent: settings.textAlign }}
+        style={{
+          justifyContent: settings.textAlign,
+          textAlign: settings.textAlign as CanvasTextAlign,
+        }}
       >
         <span className="rounded-xl py-1 px-4 before:content-['»_']" style={style}>
           {text}
@@ -65,7 +68,7 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
 
   const containerStyle = {
     display: 'flex',
-    justifyContent: position.y <= (window.innerHeight / 2) ? 'start' : 'end'
+    justifyContent: position.y <= window.innerHeight / 2 ? 'start' : 'end',
   }
 
   return (
