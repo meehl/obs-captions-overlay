@@ -1,46 +1,8 @@
 import { type FC } from 'react'
 import { type Transcription, type Settings } from '../types'
-import useHideOnTimeout from '../hooks/useHideOnTimeout'
 import { Rnd, type Position } from 'react-rnd'
 import { useLocalStorage } from '../hooks/useLocalStorage'
-
-type MessageProps = {
-  text: string
-  settings: Settings
-}
-
-const Message: FC<MessageProps> = ({ text, settings }) => {
-  const [hide] = useHideOnTimeout({ delay: 10000 })
-
-  const style = {
-    fontFamily: settings.fontFamily + ', sans-serif',
-    fontSize: settings.fontSize,
-    fontWeight: settings.fontWeight,
-    lineHeight: settings.lineHeight,
-    WebkitTextStrokeWidth: settings.outlineSize,
-    WebkitTextStrokeColor: settings.outlineColor,
-    color: settings.fontColor,
-    backgroundColor: settings.backgroundColor,
-  } as const
-
-  if (!hide) {
-    return (
-      <span
-        className="flex opacity-70 last-of-type:opacity-100"
-        style={{
-          justifyContent: settings.textAlign,
-          textAlign: settings.textAlign as CanvasTextAlign,
-        }}
-      >
-        <span className="rounded-xl py-1 px-4 before:content-['»_']" style={style}>
-          {text}
-        </span>
-      </span>
-    )
-  } else {
-    return null
-  }
-}
+import {Subtitle} from './Subtitle'
 
 type Size = {
   width: string | number
@@ -63,7 +25,7 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
   })
 
   const messageItems = messages.map((msg) => (
-    <Message text={msg.text} key={msg.id} settings={settings} />
+    <Subtitle text={msg.text} key={msg.id} settings={settings} />
   ))
 
   const containerStyle = {
