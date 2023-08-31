@@ -8,11 +8,13 @@ export const defaultSettings: Settings = {
   outlineSize: 0,
   fontColor: '#ffffffff',
   outlineColor: '#000000ff',
-  backgroundColor: '#00000033',
+  backgroundColor: '#00000044',
   textAlign: 'center',
   wsAddress: 'localhost:12422',
   historySize: 1,
   showPreview: false,
+  sourceLang: 'en',
+  targetLang: 'zh-TW',
 }
 
 export const previewMessages = [

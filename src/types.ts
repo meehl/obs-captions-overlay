@@ -11,6 +11,9 @@ export type Settings = {
   wsAddress: string
   historySize: number
   showPreview: boolean
+  apiKey?: string
+  sourceLang: string
+  targetLang: string
 }
 
 export type Transcription = {

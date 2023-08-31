@@ -198,6 +198,37 @@ const PropertyPanel: FC<PropertyPanelProps> = ({ data, setData, connectionStatus
         />
       </div>
       <div>
+        <span className="block">Google Script Api Key</span>
+        <input
+          className="block rounded-sm p-1 w-48"
+          type='password'
+          value={data.apiKey}
+          onChange={(e) => {
+            handleChange('apiKey', e.target.value)
+          }}
+        />
+      </div>
+      <div>
+        <span className="block">Source Language</span>
+        <input
+          className="block rounded-sm p-1 w-48"
+          value={data.sourceLang}
+          onChange={(e) => {
+            handleChange('sourceLang', e.target.value)
+          }}
+        />
+      </div>
+      <div>
+        <span className="block">Target Language</span>
+        <input
+          className="block rounded-sm p-1 w-48"
+          value={data.targetLang}
+          onChange={(e) => {
+            handleChange('targetLang', e.target.value)
+          }}
+        />
+      </div>
+      <div>
         <button className="mt-1 px-2 rounded bg-blue-500" onClick={() => handleReset()}>
           Reset To Defaults
         </button>
