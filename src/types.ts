@@ -10,6 +10,7 @@ export type Settings = {
   textAlign: string
   wsAddress: string
   historySize: number
+  hideDelay: number
   showPreview: boolean
   enableTranslation: boolean
   apiKey: string

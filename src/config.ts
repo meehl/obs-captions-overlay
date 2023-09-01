@@ -10,6 +10,7 @@ export const defaults = {
   textAlign: 'center',
   wsAddress: 'localhost:12422',
   historySize: 1,
+  hideDelay: 6000,
   showPreview: false,
   enableTranslation: false,
   apiKey: '',

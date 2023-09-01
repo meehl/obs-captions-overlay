@@ -21,6 +21,7 @@ type SettingsPanelProps = Settings & {
   setTextAlign: React.Dispatch<React.SetStateAction<string>>
   setWsAddress: React.Dispatch<React.SetStateAction<string>>
   setHistorySize: React.Dispatch<React.SetStateAction<number>>
+  setHideDelay: React.Dispatch<React.SetStateAction<number>>
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>
   setEnableTranslation: React.Dispatch<React.SetStateAction<boolean>>
   setApiKey: React.Dispatch<React.SetStateAction<string>>
@@ -169,6 +170,14 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
         </TabPanel>
         <TabPanel>
           <SettingsPage>
+            <SettingsSlider
+              name={'Hide Delay'}
+              value={props.hideDelay}
+              setValue={props.setHideDelay}
+              min={0}
+              max={20000}
+              step={500}
+            />
             <SettingsSlider
               name={'Message History Size'}
               value={props.historySize}

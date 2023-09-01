@@ -24,6 +24,7 @@ const App: FC = () => {
   const [textAlign, setTextAlign] = useLocalStorage<string>('textAlign', defaults.textAlign)
   const [wsAddress, setWsAddress] = useLocalStorage<string>('wsAddress', defaults.wsAddress)
   const [historySize, setHistorySize] = useLocalStorage<number>('historySize', defaults.historySize)
+  const [hideDelay, setHideDelay] = useLocalStorage<number>('hideDelay', defaults.hideDelay)
   const [showPreview, setShowPreview] = useLocalStorage<boolean>(
     'showPreview',
     defaults.showPreview,
@@ -48,6 +49,7 @@ const App: FC = () => {
     textAlign,
     wsAddress,
     historySize,
+    hideDelay,
     showPreview,
     enableTranslation,
     apiKey,
@@ -77,6 +79,7 @@ const App: FC = () => {
         setTextAlign={setTextAlign}
         setWsAddress={setWsAddress}
         setHistorySize={setHistorySize}
+        setHideDelay={setHideDelay}
         setShowPreview={setShowPreview}
         setEnableTranslation={setEnableTranslation}
         setApiKey={setApiKey}
