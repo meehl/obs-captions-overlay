@@ -7,6 +7,7 @@ import { ColorPickerPopup } from './ColorPickerPopup'
 import { HexAlphaColorPicker } from 'react-colorful'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import 'react-tabs/style/react-tabs.css'
+import { translationLanguages } from '../constants'
 
 type SettingsPanelProps = Settings & {
   setFontFamily: React.Dispatch<React.SetStateAction<string>>
@@ -136,16 +137,28 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
               setValue={props.setApiKey}
               type={'password'}
             />
-            <SettingsText
+            <SettingsSelect
               name={'Source Language'}
               value={props.sourceLang}
               setValue={props.setSourceLang}
-            />
-            <SettingsText
+            >
+              {Object.entries(translationLanguages).map(([k, v]) => (
+                <option key={k} value={k}>
+                  {v}
+                </option>
+              ))}
+            </SettingsSelect>
+            <SettingsSelect
               name={'Target Language'}
               value={props.targetLang}
               setValue={props.setTargetLang}
-            />
+            >
+              {Object.entries(translationLanguages).map(([k, v]) => (
+                <option key={k} value={k}>
+                  {v}
+                </option>
+              ))}
+            </SettingsSelect>
           </SettingsPage>
         </TabPanel>
         <TabPanel>
@@ -270,7 +283,7 @@ const SettingsSelect: FC<SettingsSelectProps> = (props) => {
     <div className="flex flex-col">
       <span>{props.name}</span>
       <select
-        className="rounded-sm p-1"
+        className="rounded-sm p-1 w-48"
         value={props.value}
         onChange={(e) => {
           props.setValue(e.target.value)
