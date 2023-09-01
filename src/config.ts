@@ -16,4 +16,5 @@ export const defaults = {
   apiKey: '',
   sourceLang: 'en',
   targetLang: 'zh-TW',
+  secFontSizeMult: 0.8,
 }

@@ -29,7 +29,7 @@ export const Caption: FC<CaptionProps> = (props) => {
   } as const
 
   const secondaryStyle = {
-    fontSize: props.fontSize * 0.8,
+    fontSize: props.fontSize * props.secFontSizeMult,
   } as const
 
   if (!hide) {

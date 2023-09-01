@@ -16,6 +16,7 @@ export type Settings = {
   apiKey: string
   sourceLang: string
   targetLang: string
+  secFontSizeMult: number
 }
 
 export type Message = {

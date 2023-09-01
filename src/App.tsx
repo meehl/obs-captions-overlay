@@ -36,6 +36,7 @@ const App: FC = () => {
   const [apiKey, setApiKey] = useLocalStorage<string>('apiKey', defaults.apiKey)
   const [sourceLang, setSourceLang] = useLocalStorage<string>('sourceLang', defaults.sourceLang)
   const [targetLang, setTargetLang] = useLocalStorage<string>('targetLang', defaults.targetLang)
+  const [secFontSizeMult, setSecFontSizeMult] = useLocalStorage<number>('secFontSizeMult', defaults.secFontSizeMult)
 
   const settings = {
     fontFamily,
@@ -55,6 +56,7 @@ const App: FC = () => {
     apiKey,
     sourceLang,
     targetLang,
+    secFontSizeMult,
   }
 
   const { messageHistory } = useWhisperWebsocket({
@@ -85,6 +87,7 @@ const App: FC = () => {
         setApiKey={setApiKey}
         setSourceLang={setSourceLang}
         setTargetLang={setTargetLang}
+        setSecFontSizeMult={setSecFontSizeMult}
       />
       <Captions
         messages={messages}

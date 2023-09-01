@@ -27,6 +27,7 @@ type SettingsPanelProps = Settings & {
   setApiKey: React.Dispatch<React.SetStateAction<string>>
   setSourceLang: React.Dispatch<React.SetStateAction<string>>
   setTargetLang: React.Dispatch<React.SetStateAction<string>>
+  setSecFontSizeMult: React.Dispatch<React.SetStateAction<number>>
 }
 
 const SettingsPanel: FC<SettingsPanelProps> = (props) => {
@@ -166,6 +167,14 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
                 </option>
               ))}
             </SettingsSelect>
+            <SettingsSlider
+              name={'Font Size Multiplier'}
+              value={props.secFontSizeMult}
+              setValue={props.setSecFontSizeMult}
+              min={0.1}
+              max={2}
+              step={0.05}
+            />
           </SettingsPage>
         </TabPanel>
         <TabPanel>
