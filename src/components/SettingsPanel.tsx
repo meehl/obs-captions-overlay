@@ -22,6 +22,7 @@ type SettingsPanelProps = Settings & {
   setWsAddress: React.Dispatch<React.SetStateAction<string>>
   setHistorySize: React.Dispatch<React.SetStateAction<number>>
   setShowPreview: React.Dispatch<React.SetStateAction<boolean>>
+  setEnableTranslation: React.Dispatch<React.SetStateAction<boolean>>
   setApiKey: React.Dispatch<React.SetStateAction<string>>
   setSourceLang: React.Dispatch<React.SetStateAction<string>>
   setTargetLang: React.Dispatch<React.SetStateAction<string>>
@@ -131,6 +132,11 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
         </TabPanel>
         <TabPanel>
           <SettingsPage>
+            <SettingsCheckbox
+              name={'Enable Translation'}
+              value={props.enableTranslation}
+              setValue={props.setEnableTranslation}
+            />
             <SettingsText
               name={'Google Script Api Key'}
               value={props.apiKey}

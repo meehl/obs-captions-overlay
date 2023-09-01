@@ -10,6 +10,7 @@ type CaptionProps = Settings & {
 export const Caption: FC<CaptionProps> = (props) => {
   const [hide] = useHideOnTimeout({ delay: 10000 })
   const [translation] = useGoogleTranslate({
+    isEnabled: props.enableTranslation,
     text: props.text,
     apiKey: props.apiKey,
     sourceLang: props.sourceLang,

@@ -11,6 +11,7 @@ export const defaults = {
   wsAddress: 'localhost:12422',
   historySize: 1,
   showPreview: false,
+  enableTranslation: false,
   apiKey: '',
   sourceLang: 'en',
   targetLang: 'zh-TW',

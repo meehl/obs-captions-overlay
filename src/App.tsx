@@ -28,6 +28,10 @@ const App: FC = () => {
     'showPreview',
     defaults.showPreview,
   )
+  const [enableTranslation, setEnableTranslation] = useLocalStorage<boolean>(
+    'enableTranslation',
+    defaults.enableTranslation,
+  )
   const [apiKey, setApiKey] = useLocalStorage<string>('apiKey', defaults.apiKey)
   const [sourceLang, setSourceLang] = useLocalStorage<string>('sourceLang', defaults.sourceLang)
   const [targetLang, setTargetLang] = useLocalStorage<string>('targetLang', defaults.targetLang)
@@ -45,6 +49,7 @@ const App: FC = () => {
     wsAddress,
     historySize,
     showPreview,
+    enableTranslation,
     apiKey,
     sourceLang,
     targetLang,
@@ -73,6 +78,7 @@ const App: FC = () => {
         setWsAddress={setWsAddress}
         setHistorySize={setHistorySize}
         setShowPreview={setShowPreview}
+        setEnableTranslation={setEnableTranslation}
         setApiKey={setApiKey}
         setSourceLang={setSourceLang}
         setTargetLang={setTargetLang}

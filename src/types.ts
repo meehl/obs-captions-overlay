@@ -11,6 +11,7 @@ export type Settings = {
   wsAddress: string
   historySize: number
   showPreview: boolean
+  enableTranslation: boolean
   apiKey: string
   sourceLang: string
   targetLang: string
