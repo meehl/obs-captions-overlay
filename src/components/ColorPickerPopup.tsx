@@ -20,7 +20,7 @@ export const ColorPickerPopup: FC<ColorPickerPopupProps> = (props) => {
       <div
         role="button"
         tabIndex={0}
-        className="rounded-lg h-7 w-7 border-2 border-black cursor-pointer"
+        className="rounded-lg h-7 w-14 border-2 border-black cursor-pointer"
         style={{
           backgroundColor: props.color,
         }}

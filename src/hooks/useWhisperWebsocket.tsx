@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useDebounce } from '../hooks/useDebounce'
-import { type Transcription } from '../types'
+import { type Message } from '../types'
 import { CONNECTION_STATUS } from '../constants'
 
 type useWhisperWebsocketProps = {
@@ -10,7 +10,7 @@ type useWhisperWebsocketProps = {
 }
 
 const useWhisperWebsocket = ({ wsAddress, historySize }: useWhisperWebsocketProps) => {
-  const [messageHistory, setMessageHistory] = useState<Transcription[]>([])
+  const [messageHistory, setMessageHistory] = useState<Message[]>([])
   const debouncedWsAddress = useDebounce<string>(wsAddress, 1000)
   const { lastJsonMessage, readyState } = useWebSocket(`ws://${debouncedWsAddress}`, {
     retryOnError: true,
@@ -23,7 +23,7 @@ const useWhisperWebsocket = ({ wsAddress, historySize }: useWhisperWebsocketProp
     if (lastJsonMessage !== null) {
       setMessageHistory((prev) => {
         const newHistory = prev.slice()
-        newHistory.push(lastJsonMessage as Transcription)
+        newHistory.push(lastJsonMessage as Message)
         while (newHistory.length > historySize + 1) {
           newHistory.shift()
         }

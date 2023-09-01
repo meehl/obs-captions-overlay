@@ -1,31 +1,25 @@
 import { type FC } from 'react'
-import { type Transcription, type Settings } from '../types'
+import { type Message, type Settings, Size } from '../types'
 import { Rnd, type Position } from 'react-rnd'
 import { useLocalStorage } from '../hooks/useLocalStorage'
-import {Subtitle} from './Subtitle'
+import { Caption } from './Caption'
 
-type Size = {
-  width: string | number
-  height: string | number
+type CaptionsProps = Settings & {
+  messages: Message[]
 }
 
-type SubtitlesProps = {
-  settings: Settings
-  messages: Transcription[]
-}
-
-const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
-  const [position, setPosition] = useLocalStorage<Position>('position', {
+const Captions: FC<CaptionsProps> = (props) => {
+  const [position, setPosition] = useLocalStorage<Position>('subtitlesPosition', {
     x: 560,
     y: 875,
   })
-  const [size, setSize] = useLocalStorage<Size>('size', {
+  const [size, setSize] = useLocalStorage<Size>('subtitlesSize', {
     width: '50%',
     height: 200,
   })
 
-  const messageItems = messages.map((msg) => (
-    <Subtitle text={msg.text} key={msg.id} settings={settings} />
+  const messageItems = props.messages.map((msg) => (
+    <Caption text={msg.text} key={msg.id} {...props} />
   ))
 
   const containerStyle = {
@@ -52,4 +46,4 @@ const Subtitles: FC<SubtitlesProps> = ({ settings, messages }) => {
   )
 }
 
-export default Subtitles
+export default Captions

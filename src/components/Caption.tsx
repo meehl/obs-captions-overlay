@@ -3,33 +3,32 @@ import { type Settings } from '../types'
 import useHideOnTimeout from '../hooks/useHideOnTimeout'
 import useGoogleTranslate from '../hooks/useGoogleTranslate'
 
-interface SubtitleProps {
+type CaptionProps = Settings & {
   text: string
-  settings: Settings
 }
 
-export const Subtitle: FC<SubtitleProps> = ({ text, settings }) => {
+export const Caption: FC<CaptionProps> = (props) => {
   const [hide] = useHideOnTimeout({ delay: 10000 })
   const [translation] = useGoogleTranslate({
-    text,
-    apiKey: settings.apiKey,
-    sourceLang: settings.sourceLang,
-    targetLang: settings.targetLang,
+    text: props.text,
+    apiKey: props.apiKey,
+    sourceLang: props.sourceLang,
+    targetLang: props.targetLang,
   })
 
   const primaryStyle = {
-    fontFamily: settings.fontFamily + ', sans-serif',
-    fontSize: settings.fontSize,
-    fontWeight: settings.fontWeight,
-    lineHeight: settings.lineHeight,
-    WebkitTextStrokeWidth: settings.outlineSize,
-    WebkitTextStrokeColor: settings.outlineColor,
-    color: settings.fontColor,
-    backgroundColor: settings.backgroundColor,
+    fontFamily: props.fontFamily + ', sans-serif',
+    fontSize: props.fontSize,
+    fontWeight: props.fontWeight,
+    lineHeight: props.lineHeight,
+    WebkitTextStrokeWidth: props.outlineSize,
+    WebkitTextStrokeColor: props.outlineColor,
+    color: props.fontColor,
+    backgroundColor: props.backgroundColor,
   } as const
 
   const secondaryStyle = {
-    fontSize: settings.fontSize * 0.8,
+    fontSize: props.fontSize * 0.8,
   } as const
 
   if (!hide) {
@@ -37,13 +36,13 @@ export const Subtitle: FC<SubtitleProps> = ({ text, settings }) => {
       <span
         className="flex flex-col opacity-70 last-of-type:opacity-100"
         style={{
-          textAlign: settings.textAlign as CanvasTextAlign,
-          alignItems: settings.textAlign,
+          textAlign: props.textAlign as CanvasTextAlign,
+          alignItems: props.textAlign,
         }}
       >
         <span className="flex flex-col rounded-lg py-1 px-3 mt-0.5" style={primaryStyle}>
           {translation && <span style={secondaryStyle}>{translation}</span>}
-          <span className="before:content-['»_']">{text}</span>
+          <span className="before:content-['»_']">{props.text}</span>
         </span>
       </span>
     )

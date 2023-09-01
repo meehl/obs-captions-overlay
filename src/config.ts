@@ -1,0 +1,17 @@
+export const defaults = {
+  fontFamily: 'Roboto',
+  fontSize: 20,
+  fontWeight: 500,
+  lineHeight: 1.2,
+  outlineSize: 0,
+  fontColor: '#ffffffff',
+  outlineColor: '#000000ff',
+  backgroundColor: '#00000044',
+  textAlign: 'center',
+  wsAddress: 'localhost:12422',
+  historySize: 1,
+  showPreview: false,
+  apiKey: '',
+  sourceLang: 'en',
+  targetLang: 'zh-TW',
+}
