@@ -31,7 +31,7 @@ type SettingsPanelProps = Settings & {
 }
 
 const SettingsPanel: FC<SettingsPanelProps> = (props) => {
-  const [hide] = useHideOnMouseStop({ delay: 6000, initialHide: true })
+  const [hide] = useHideOnMouseStop({ delay: 15000, initialHide: true })
   const [position, setPosition] = useLocalStorage<Position>('settingsPanelPosition', {
     x: 1,
     y: 1,
@@ -55,11 +55,11 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
         topLeft: false,
       }}
       style={{ display: hide ? 'none' : 'flex' }}
-      className="flex flex-col m-5"
+      className="flex flex-col m-5 z-10"
       dragHandleClassName="dragger"
     >
       <Dragger />
-      <Tabs className="rounded-b-xl rounded-r-xl bg-zinc-900 z-10">
+      <Tabs className="rounded-b-xl rounded-r-xl bg-zinc-900">
         <TabList>
           <Tab>Font</Tab>
           <Tab>Translation</Tab>

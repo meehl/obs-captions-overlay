@@ -5,6 +5,7 @@ import useWhisperWebsocket from './hooks/useWhisperWebsocket'
 import { previewMessages } from './constants'
 import { defaults } from './config'
 import SettingsPanel from './components/SettingsPanel'
+import {StatusIndicator} from './components/StatusIndicator'
 
 const App: FC = () => {
   const [fontFamily, setFontFamily] = useLocalStorage<string>('fontFamily', defaults.fontFamily)
@@ -59,7 +60,7 @@ const App: FC = () => {
     secFontSizeMult,
   }
 
-  const { messageHistory } = useWhisperWebsocket({
+  const { messageHistory, connectionStatus } = useWhisperWebsocket({
     wsAddress: wsAddress,
     historySize: historySize,
   })
@@ -93,6 +94,7 @@ const App: FC = () => {
         messages={messages}
         {...settings}
       />
+      <StatusIndicator status={connectionStatus} />
     </div>
   )
 }
