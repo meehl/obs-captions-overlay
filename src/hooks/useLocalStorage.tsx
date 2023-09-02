@@ -1,9 +1,9 @@
-import { type Dispatch, type SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-export function useLocalStorage<Type>(
+const useLocalStorage = <Type,>(
   key: string,
   defaultValue: Type,
-): [Type, Dispatch<SetStateAction<Type>>] {
+): [Type, Dispatch<SetStateAction<Type>>] => {
   const storedValue = localStorage.getItem(key)
 
   const [value, setValue] = useState<Type>(
@@ -16,3 +16,5 @@ export function useLocalStorage<Type>(
 
   return [value, setValue]
 }
+
+export default useLocalStorage

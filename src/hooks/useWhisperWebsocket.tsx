@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
-import { useDebounce } from '../hooks/useDebounce'
+import useDebounce from '../hooks/useDebounce'
 import { type Message } from '../types'
 import { CONNECTION_STATUS } from '../constants'
 

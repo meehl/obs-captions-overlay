@@ -1,7 +1,7 @@
 import { ReactNode, type FC } from 'react'
 import useHideOnMouseStop from '../hooks/useHideOnMouseStop'
 import { Rnd, type Position } from 'react-rnd'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import useLocalStorage from '../hooks/useLocalStorage'
 import { Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
 import { HexAlphaColorPicker } from 'react-colorful'
@@ -210,7 +210,9 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
               value={props.showPreview}
               setValue={props.setShowPreview}
             />
-            <button className='rounded-lg bg-blue-700' onClick={() => handleReset()}>Reset to Defaults</button>
+            <button className="rounded-lg bg-blue-700" onClick={() => handleReset()}>
+              Reset to Defaults
+            </button>
           </SettingsPage>
         </TabPanel>
       </Tabs>

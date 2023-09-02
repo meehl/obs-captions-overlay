@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import { type Message, type Settings, Size } from '../types'
 import { Rnd, type Position } from 'react-rnd'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import useLocalStorage from '../hooks/useLocalStorage'
 import { Caption } from './Caption'
 
 type CaptionsProps = Settings & {

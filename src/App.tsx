@@ -1,6 +1,6 @@
 import { type FC } from 'react'
 import Captions from './components/Captions'
-import { useLocalStorage } from './hooks/useLocalStorage'
+import useLocalStorage from './hooks/useLocalStorage'
 import useWhisperWebsocket from './hooks/useWhisperWebsocket'
 import { previewMessages } from './constants'
 import { defaults } from './config'
