@@ -104,7 +104,8 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
               value={props.outlineSize}
               setValue={props.setOutlineSize}
               min={0}
-              max={10}
+              max={4}
+              step={0.05}
             />
             <SettingsSelect
               name={'Text Align'}
