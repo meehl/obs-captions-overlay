@@ -37,6 +37,11 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
     y: 1,
   })
 
+  const handleReset = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
   return (
     <Rnd
       position={position}
@@ -205,6 +210,7 @@ const SettingsPanel: FC<SettingsPanelProps> = (props) => {
               value={props.showPreview}
               setValue={props.setShowPreview}
             />
+            <button className='rounded-lg bg-blue-700' onClick={() => handleReset()}>Reset to Defaults</button>
           </SettingsPage>
         </TabPanel>
       </Tabs>
