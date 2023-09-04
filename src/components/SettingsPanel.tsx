@@ -6,7 +6,7 @@ import { Settings } from '../types'
 import { ColorPickerPopup } from './ColorPickerPopup'
 import { HexAlphaColorPicker } from 'react-colorful'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
-import 'react-tabs/style/react-tabs.css'
+import '../react-tabs.css'
 import { translationLanguages } from '../constants'
 
 type SettingsPanelProps = Settings & {
@@ -242,7 +242,7 @@ const SettingsText: FC<SettingsTextProps> = (props) => {
     <div className="flex flex-col">
       <span>{props.name}</span>
       <input
-        className="rounded-sm p-1 w-48"
+        className="rounded-sm p-1 w-52"
         type={props.type}
         value={props.value}
         onChange={(e) => {
@@ -316,7 +316,7 @@ const SettingsSelect: FC<SettingsSelectProps> = (props) => {
     <div className="flex flex-col">
       <span>{props.name}</span>
       <select
-        className="rounded-sm p-1 w-48"
+        className="rounded-sm p-1 w-52"
         value={props.value}
         onChange={(e) => {
           props.setValue(e.target.value)
