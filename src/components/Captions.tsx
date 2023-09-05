@@ -4,18 +4,21 @@ import { Rnd, type Position } from 'react-rnd'
 import useLocalStorage from '../hooks/useLocalStorage'
 import { Caption } from './Caption'
 
+const initialWidth = Math.floor(window.innerWidth * 0.5)
+const initialHeight = Math.floor(window.innerHeight * 0.18)
+
 type CaptionsProps = Settings & {
   messages: Message[]
 }
 
 const Captions: FC<CaptionsProps> = (props) => {
-  const [position, setPosition] = useLocalStorage<Position>('subtitlesPosition', {
-    x: 560,
-    y: 875,
+  const [position, setPosition] = useLocalStorage<Position>('captionsPosition', {
+    x: Math.floor((window.innerWidth - initialWidth) * 0.5),
+    y: Math.floor(window.innerHeight - initialHeight),
   })
-  const [size, setSize] = useLocalStorage<Size>('subtitlesSize', {
-    width: '50%',
-    height: 200,
+  const [size, setSize] = useLocalStorage<Size>('captionsSize', {
+    width: initialWidth,
+    height: initialHeight,
   })
 
   const messageItems = props.messages.map((msg) => (
