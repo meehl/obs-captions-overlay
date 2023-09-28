@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { type FC, type ReactNode, useRef, useState } from 'react'
 import useClickOutside from '../hooks/useClickOutside'
 
@@ -17,8 +16,7 @@ export const ColorPickerPopup: FC<ColorPickerPopupProps> = (props) => {
 
   return (
     <div className="relative">
-      <div
-        role="button"
+      <button
         tabIndex={0}
         className="rounded-lg h-7 w-14 border-2 border-black cursor-pointer"
         style={{
