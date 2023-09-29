@@ -1,9 +1,4 @@
-import { RelativePosition, type Size } from './types'
-
-type Position = {
-  x: number
-  y: number
-}
+import { type Position, type RelativePosition, type Size, type RelativeSize } from './types'
 
 export const absToRelWindowPosition = (
   absPos: Position,
@@ -42,4 +37,18 @@ export const relToAbsWindowPosition = (
     absPos.y = (1 - relPos.bottom) * windowSize.height - elementSize.height
   }
   return absPos
+}
+
+export const absToRelSize = (absSize: Size, windowSize: Size): RelativeSize => {
+  return {
+    width: absSize.width / windowSize.width,
+    height: absSize.height / windowSize.height,
+  }
+}
+
+export const relToAbsSize = (relSize: RelativeSize, windowSize: Size): Size => {
+  return {
+    width: relSize.width * windowSize.width,
+    height: relSize.height * windowSize.height,
+  }
 }

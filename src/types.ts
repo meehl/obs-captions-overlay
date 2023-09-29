@@ -31,6 +31,16 @@ export type Size = {
   height: number
 }
 
+export type RelativeSize = {
+  width: number
+  height: number
+}
+
+export type Position = {
+  x: number
+  y: number
+}
+
 export type RelativePosition = {
   top?: number
   bottom?: number
