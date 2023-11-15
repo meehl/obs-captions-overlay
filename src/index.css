@@ -17,3 +17,9 @@ body {
   background-color: rgba(0, 0, 0, 0);
   color: white;
 }
+
+@layer base {
+  input, textarea, select {
+    color: black !important;
+  }
+}
