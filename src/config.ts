@@ -6,7 +6,7 @@ export const defaults = {
   outlineSize: 0,
   fontColor: '#ffffffff',
   outlineColor: '#000000ff',
-  backgroundColor: '#00000044',
+  backgroundColor: '#00000066',
   textAlign: 'center',
   wsAddress: 'localhost:12422',
   historySize: 1,
